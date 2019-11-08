@@ -1,0 +1,29 @@
+<div class="example-container mat-elevation-z8">
+    <div class="example-loading-shade"
+         *ngIf="isLoadingResults">
+      <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+    </div>
+    <div class="button-row">
+      <a mat-flat-button color="primary" [routerLink]="['/cotizacionCereal-add']"><mat-icon>add</mat-icon></a>
+    </div>
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="data" class="example-table"
+             matSort matSortActive="id_Cereal" matSortDisableClear matSortDirection="asc">
+  
+        <!-- id_cereal Name Column -->
+        <ng-container matColumnDef="id_Cereal">
+          <th mat-header-cell *matHeaderCellDef>Cereal</th>
+          <td mat-cell *matCellDef="let row">{{row.id_Cereal}}</td>
+        </ng-container>
+  
+        <!-- fecha Column -->
+        <ng-container matColumnDef="fecha">
+          <th mat-header-cell *matHeaderCellDef>Fecha</th>
+          <td mat-cell *matCellDef="let row">$ {{row.fecha}}</td>
+        </ng-container>
+  
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" [routerLink]="['/cotizacionCereal-detail/', row.id]"></tr>
+      </table>
+    </div>
+  </div>
