@@ -5,10 +5,12 @@ import { catchError, tap, map } from 'rxjs/operators';
 import { CotizacionCereal } from './cotizacionCereal';
 
 const httpOptions = {
-  headers: new HttpHeaders({'Content-Type': 'application/json'})
+  headers: new HttpHeaders({'Content-Type': 'application/json','Access-Control-Allow-Origin': '*' }),
+  crossdDomain:true
 };
-const apiUrl = "http://dev.coopagricolaposse.com.ar/api/cotizacionCereal/";
-
+const apiUrl = "http://dev.coopmontemaiz.com.ar/api/cotizacionCereal/";
+let headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
+let options = { headers: headers, crossDomain: true, withCredentials: false };
 @Injectable({
   providedIn: 'root'
 })
@@ -26,11 +28,19 @@ export class ApiService {
     };
   }
   getCotizacionCereal (): Observable<CotizacionCereal[]> {
-    return this.http.get<CotizacionCereal[]>(apiUrl + "getall")
+    return this.http.get<CotizacionCereal[]>(apiUrl + "getall",httpOptions)
       .pipe(
         tap(heroes => console.log('fetched cotizacionCereal')),
         catchError(this.handleError('getcotizacionCereal', []))
       );
   }
+  getPizarraCereal (id:string): Observable<CotizacionCereal[]> {
+    return this.http.get<CotizacionCereal[]>(apiUrl + "pizarra/" + id  ,httpOptions)
+      .pipe(
+        tap(heroes => console.log('fetched cotizacionCereal')),
+        catchError(this.handleError('getcotizacionCereal', []))
+      );
+  }
+
 }
 
