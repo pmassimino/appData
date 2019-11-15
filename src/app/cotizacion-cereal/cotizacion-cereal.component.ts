@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
+import {MercadoService} from '../services/mercado.service'
 import { CotizacionCereal } from '../cotizacionCereal';
+import {Mercado} from '../models/cotizacionCereal'
 
 
 
@@ -12,12 +14,15 @@ import { CotizacionCereal } from '../cotizacionCereal';
 export class CotizacionCerealComponent implements OnInit {
   displayedColumns: string[] = ['fecha', 'id_Cereal','precio'];
   data: CotizacionCereal[] = [];
+  mercadoData:Mercado[] =[]
   isLoadingResults = true;
 
-  constructor(private api: ApiService) { }
+  constructor(private api: ApiService,private mercadoApi:MercadoService) { }
 
   ngOnInit() {
-    //this.api.getCotizacionCereal()
+    this.mercadoApi.getAll()
+    .subscribe(res=>{this.mercadoData=res;console.log(this.data)},err=>{console.log(err)})
+    
     this.api.getPizarraCereal("001")
     .subscribe(res => {
       this.data = res;
