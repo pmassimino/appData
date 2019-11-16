@@ -8,7 +8,7 @@ const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json','Access-Control-Allow-Origin': '*' }),
   crossdDomain:true
 };
-const apiUrl = "http://dev.coopmontemaiz.com.ar/api/cotizacionCereal/";
+const apiUrl = "http://dev.coopmontemaiz.com.ar/api/mercadoCereal/";
 let headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
 let options = { headers: headers, crossDomain: true, withCredentials: false };
 

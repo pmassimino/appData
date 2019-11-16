@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { catchError, tap, map } from 'rxjs/operators';
-import { CotizacionCereal } from './cotizacionCereal';
+import { cotizacionCereal } from './cotizacionCereal';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json','Access-Control-Allow-Origin': '*' }),
@@ -27,15 +27,15 @@ export class ApiService {
       return of(result as T);
     };
   }
-  getCotizacionCereal (): Observable<CotizacionCereal[]> {
-    return this.http.get<CotizacionCereal[]>(apiUrl + "getall",httpOptions)
+  getCotizacionCereal (): Observable<cotizacionCereal[]> {
+    return this.http.get<cotizacionCereal[]>(apiUrl + "getall",httpOptions)
       .pipe(
         tap(heroes => console.log('fetched cotizacionCereal')),
         catchError(this.handleError('getcotizacionCereal', []))
       );
   }
-  getPizarraCereal (id:string): Observable<CotizacionCereal[]> {
-    return this.http.get<CotizacionCereal[]>(apiUrl + "pizarra/" + id  ,httpOptions)
+  getPizarraCereal (id:string): Observable<cotizacionCereal[]> {
+    return this.http.get<cotizacionCereal[]>(apiUrl + "pizarra/" + id  ,httpOptions)
       .pipe(
         tap(heroes => console.log('fetched cotizacionCereal')),
         catchError(this.handleError('getcotizacionCereal', []))
