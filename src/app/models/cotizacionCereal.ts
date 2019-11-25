@@ -19,3 +19,13 @@ export class cotizacionCereal {
     id: string;
     Nombre: string;
   }
+  export class pizarraCereal
+  {
+    id_mercado:string;
+    fecha:Date;
+    soja:number;
+    trigo:number;
+    maiz:number;
+    sorgo:number;
+    girasol:number;
+  }

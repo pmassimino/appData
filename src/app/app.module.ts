@@ -17,11 +17,13 @@ import {
   MatCardModule,
   MatFormFieldModule } from "@angular/material";
   import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PizarraComponent } from './pizarra/pizarra.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CotizacionCerealComponent
+    CotizacionCerealComponent,
+    PizarraComponent
   ],
   imports: [
     BrowserModule,

@@ -34,6 +34,11 @@ export class ApiService {
         catchError(this.handleError('getcotizacionCereal', []))
       );
   }
+  insert(cotizacion:cotizacionCereal):Observable<cotizacionCereal>
+  {
+return this.http.post<cotizacionCereal>(apiUrl +"insert",JSON.stringify(cotizacion),httpOptions ).pipe(tap(result=>console.log('insert ok')
+,catchError(this.handleError('insert fail',[]))));
+  }
   getPizarraCereal (id:string): Observable<cotizacionCereal[]> {
     return this.http.get<cotizacionCereal[]>(apiUrl + "pizarra/" + id  ,httpOptions)
       .pipe(

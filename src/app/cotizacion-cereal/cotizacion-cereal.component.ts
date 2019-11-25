@@ -28,10 +28,16 @@ export class CotizacionCerealComponent implements OnInit {
       this.data = res;
       console.log(this.data);
       this.isLoadingResults = false;
+      var soja = this.data.find(d=>d.id_Cereal=="23");
+      var maiz = this.data.find(d=>d.id_Cereal=="19")
+      var sorgo = this.data.find(d=>d.id_Cereal=="22")
+      var girasol = this.data.find(d=>d.id_Cereal=="02")
+      var trigo = this.data.find(d=>d.id_Cereal=="15")
     }, err => {
       console.log(err);
       this.isLoadingResults = false;
     });
+    
   }
 
 }
