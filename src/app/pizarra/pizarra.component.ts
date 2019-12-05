@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import {MercadoService} from '../services/mercado.service'
 import { cotizacionCereal } from '../cotizacionCereal';
-import {Mercado, pizarraCereal} from '../models/cotizacionCereal'
+import {Mercado, pizarraCereal} from '../models/cotizacionCereal';
+import { DatePipe } from '@angular/common';
+import { v4 as uuid } from 'uuid';
 
 
 @Component({
@@ -51,6 +53,8 @@ export class PizarraComponent implements OnInit {
   onSave()
   {
     var cotizacion:cotizacionCereal = new cotizacionCereal();
+    let id:string  = uuid();
+    cotizacion.id = id.substr(0,10);
     cotizacion.id_Cereal = "23";
     cotizacion.id_Mercado = this.pizarraData.id_mercado;
     cotizacion.id_Moneda = "PES";

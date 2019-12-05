@@ -10,7 +10,7 @@
     </div>
     <div>
       <label>Fecha: 
-        <input [(ngModel)]="pizarraData.fecha | dd/mm/yyyy" placeholder="Precio Soja" type="date"/>
+        <input [value]="pizarraData.fecha | date:'yyyy-MM-dd'" placeholder="Precio Soja" type="date" (input)="demoUser.date=parseDate($event.target.value)" />
       </label>
     </div>
     <div>
