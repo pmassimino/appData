@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { catchError, tap, map } from 'rxjs/operators';
+import { catchError,retry, tap, map } from 'rxjs/operators';
 import { cotizacionCereal } from './cotizacionCereal';
 
 const httpOptions = {
@@ -9,7 +9,7 @@ const httpOptions = {
   crossdDomain:true
 };
 const apiUrl = "http://dev.coopmontemaiz.com.ar/api/cotizacionCereal/";
-let headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
+let headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*','Access-Control-Allow-Methods' : 'GET, POST, PUT, DELETE' });
 let options = { headers: headers, crossDomain: true, withCredentials: false };
 @Injectable({
   providedIn: 'root'
@@ -34,12 +34,10 @@ export class ApiService {
         catchError(this.handleError('getcotizacionCereal', []))
       );
   }
-  insert(cotizacion:cotizacionCereal):Observable<cotizacionCereal>
-  {
-return this.http.post<cotizacionCereal>(apiUrl +"insert",JSON.stringify(cotizacion),httpOptions )
-.pipe(
- tap(result=>console.log('insert ok')
-,catchError(this.handleError('insert fail',[]))));
+  insert(cotizacion:cotizacionCereal):Observable<any>
+  {    
+    return this.http.post<cotizacionCereal>(apiUrl + "insert",JSON.stringify(cotizacion),httpOptions )
+      .pipe(catchError(this.handleError('insert fail',[])));
   }
   getPizarraCereal (id:string): Observable<cotizacionCereal[]> {
     return this.http.get<cotizacionCereal[]>(apiUrl + "pizarra/" + id  ,httpOptions)

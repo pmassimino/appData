@@ -60,7 +60,7 @@ export class PizarraComponent implements OnInit {
     cotizacion.id_Moneda = "PES";
     cotizacion.precio = this.pizarraData.soja;
     cotizacion.fecha = this.pizarraData.fecha;
-    this.api.insert(cotizacion);
+    this.api.insert(cotizacion).subscribe();
 
   }
   
