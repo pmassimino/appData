@@ -1,7 +1,7 @@
 <div>
     <h2>Pizarra Update</h2>
     <div><label>Mercado
-        <select (change)="getPizarra($event.target.value)">
+        <select (change)="getPizarra($event.target.value)" [(ngModel)]="pizarraData.id_mercado">
             <option *ngFor="let item of mercadoData" value={{item.id}}>
                 {{item.nombre}}
               </option>
@@ -10,7 +10,7 @@
     </div>
     <div>
       <label>Fecha: 
-        <input [value]="pizarraData.fecha | date:'yyyy-MM-dd'" placeholder="Fecha" type="date"  />
+        <input [(ngModel)]="pizarraData.fecha" value="{{pizarraData.fecha | date:'yyyy-MM-dd'}}" placeholder="Fecha" type="date"  />
       </label>
     </div>
     <div>
