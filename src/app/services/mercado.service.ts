@@ -3,12 +3,13 @@ import { Observable, of, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { catchError, tap, map } from 'rxjs/operators';
 import { Mercado} from "../models/cotizacionCereal";
+import { ConfigService } from './config.service';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json','Access-Control-Allow-Origin': '*' }),
   crossdDomain:true
 };
-const apiUrl = "http://dev.coopmontemaiz.com.ar/api/mercadoCereal/";
+
 let headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
 let options = { headers: headers, crossDomain: true, withCredentials: false };
 
@@ -17,7 +18,8 @@ let options = { headers: headers, crossDomain: true, withCredentials: false };
 })
 export class MercadoService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private config:ConfigService) { }
+  
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
   
@@ -29,7 +31,7 @@ export class MercadoService {
     };
   }
   getAll (): Observable<Mercado[]> {
-    return this.http.get<Mercado[]>(apiUrl + "getall",httpOptions)
+    return this.http.get<Mercado[]>(this.config.data.apiUrl + "mercadoCereal" +  "/getall",httpOptions)
       .pipe(
         tap(Mercado => console.log('fetched mercado')),
         catchError(this.handleError('getall', []))
