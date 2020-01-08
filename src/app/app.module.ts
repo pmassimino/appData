@@ -17,7 +17,9 @@ import {
   MatIconModule,
   MatButtonModule,
   MatCardModule,
-  MatFormFieldModule } from "@angular/material";
+  MatFormFieldModule, 
+  MatSelect,
+  MatSelectModule} from "@angular/material";
   import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PizarraComponent } from './pizarra/pizarra.component';
 
@@ -45,6 +47,7 @@ export function initializeApp(appConfig: ConfigService) {
     MatIconModule,
     MatButtonModule,
     MatCardModule,
+    MatSelectModule,
     MatFormFieldModule
   ],
   providers: [ConfigService,{ provide: APP_INITIALIZER,

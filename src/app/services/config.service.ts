@@ -17,10 +17,10 @@ constructor(private http: HttpClient) {
 public load() {
   //return this.http.get<config>('assets/config.json').subscribe(data => this.data = data);
   return this.http
-    .get('assets/config.json')
+    .get(this._configURL)
     .toPromise()
     .then(data => {
-     this.data = data;
+     this.data= data;
    });
 }
 }

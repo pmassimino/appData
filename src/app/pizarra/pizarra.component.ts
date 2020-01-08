@@ -3,6 +3,7 @@ import { ApiService } from '../api.service';
 import {MercadoService} from '../services/mercado.service'
 import { cotizacionCereal } from '../cotizacionCereal';
 import {Mercado, pizarraCereal} from '../models/cotizacionCereal';
+import { MatSelect } from '@angular/material';
 import { DatePipe } from '@angular/common';
 import { v4 as uuid } from 'uuid';
 

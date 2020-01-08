@@ -1,42 +1,50 @@
 <div>
-    <h2>Pizarra Update</h2>
-    <div><label>Mercado
-        <select (change)="getPizarra($event.target.value)" [(ngModel)]="pizarraData.id_mercado">
-            <option *ngFor="let item of mercadoData" value={{item.id}}>
+    <h2>Pizarra Update</h2>        
+      <div>  
+        <mat-form-field>
+        <mat-select   (selectionChange)="getPizarra($event.target.value)" [(ngModel)]="pizarraData.id_mercado"  placeholder="Mercado">
+            <mat-option  *ngFor="let item of mercadoData"  [value]="item.id">
                 {{item.nombre}}
-              </option>
-        </select>
-      </label>
+            </mat-option>
+        </mat-select>
+      </mat-form-field>      
+      </div>   
+    
+    <div>
+      <mat-form-field class="example-full-width">     
+        <input matInput [(ngModel)]="pizarraData.fecha" value="{{pizarraData.fecha | date:'yyyy-MM-dd'}}" placeholder="Fecha" type="date"  />      
+    </mat-form-field>
     </div>
     <div>
-      <label>Fecha: 
-        <input [(ngModel)]="pizarraData.fecha" value="{{pizarraData.fecha | date:'yyyy-MM-dd'}}" placeholder="Fecha" type="date"  />
-      </label>
+      <mat-form-field>     
+        <input matInput [(ngModel)]="pizarraData.soja" placeholder="Precio Soja"/>     
+    </mat-form-field>
     </div>
     <div>
-      <label>Soja: 
-        <input [(ngModel)]="pizarraData.soja" placeholder="Precio Soja"/>
-      </label>
+    <mat-form-field>            
+
+        <input matInput [(ngModel)]="pizarraData.maiz" placeholder="Precio Maiz"/>      
+    </mat-form-field> 
+    </div>  
+    <div>
+       <mat-form-field>
+
+        <input matInput [(ngModel)]="pizarraData.trigo" placeholder="Precio Trigo"/>      
+    </mat-form-field>
+          </div>
+          <div>
+    <mat-form-field>
+
+         <input matInput [(ngModel)]="pizarraData.girasol" placeholder="Precio Girasol"/>      
+    </mat-form-field>
     </div>
     <div>
-      <label>Maiz: 
-        <input [(ngModel)]="pizarraData.maiz" placeholder="Precio Maiz"/>
-      </label>
+    <mat-form-field>       
+
+        <input matInput [(ngModel)]="pizarraData.sorgo" placeholder="Precio Sorgo"/>     
+    </mat-form-field>   
     </div>
     <div>
-        <label>Trigo:
-        <input [(ngModel)]="pizarraData.trigo" placeholder="Precio Trigo"/>
-      </label>      
+     <button mat-button color="primary" (click)="onSave()">Grabar</button>
     </div>
-    <div>
-        <label>Girasol:
-        <input [(ngModel)]="pizarraData.girasol" placeholder="Precio Girasol"/>
-      </label>      
-    </div>
-    <div>
-        <label>Sorgo:
-        <input [(ngModel)]="pizarraData.sorgo" placeholder="Precio Sorgo"/>
-      </label>      
-    </div>
-    <button (click)="onSave()">Grabar</button>
   </div>
